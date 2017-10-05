@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+<title>候场教室</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<?php
+    include_once("conn.php");
+?>
+<style>
+body{
+    background-color:#D4EEC9;
+    text-align:center;
+}
+caption,th{
+    text-align:center;
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation"> 
+    <div class="container-fluid"> 
+    <div class="navbar-header"> 
+        <a class="navbar-brand" href="index.php">网协面试系统V0.1</a> 
+    </div> 
+    <div> 
+        <ul class="nav navbar-nav"> 
+            <li><a href="index.php">候场界面</a></li> 
+            <!--
+            <li><a href="http://localhost/budget/write/expense_daily.html">支出</a></li>
+            <li><a href="http://localhost/budget/write/59store.html">59store</a></li> 
+            
+            <li class="dropdown"> 
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+                    读取
+                    <b class="caret"></b> 
+                </a> 
+                <ul class="dropdown-menu"> 
+                    <li><a href="http://localhost/budget/read/income_daily.php">今日收入明细</a></li> 
+                    <li><a href="http://localhost/budget/read/expense_daily.php">今日支出明细</a></li> 
+                    <li><a href="http://localhost/budget/read/59store.php">今日明细</a></li> 
+                    <li class="divider"></li>
+                    <li><a href="http://localhost/budget/read/Sept.php">本月收支总览</a></li>
+                    <li class="divider"></li> 
+                    <li><a href="http://localhost/budget/read/income_total.php">本学期收入计划</a></li>
+                    <li><a href="http://localhost/budget/read/expense_total.php">本学期支出预算</a></li> 
+                </ul> 
+            </li> 
+        -->
+        </ul> 
+    </div> 
+    </div> 
+</nav>
+
+
+<table class="table table-hover"> 
+    <caption><h2>候场教室</h2></caption> 
+    <thead> 
+        <tr> 
+            <th>日期</th>
+            <th>教室</th> 
+            <th>时间</th> 
+            <th>姓名</th>
+            <th>状态</th>
+
+        </tr> 
+    </thead> 
+    <tbody> 
+
+<?php
+        $sql = "select date,room,time,name,status_ from recordd where status_>0 and status_<4 order by status_ desc";
+    
+    //echo $sql;
+    $result = mysqli_query($conn, $sql);
+    $myrow = mysqli_fetch_array($result);
+    mysqli_data_seek($result,0);  //指针复位 需要研究
+    $nums = mysqli_num_fields($result);//获取字段数
+
+
+    while($myrow = mysqli_fetch_row($result)){
+        echo "<tr>";
+        for ( $m = 0 ; $m < $nums ; $m++ ){
+                if ($m==4){
+                    if($myrow[$m]==1){
+                        echo '<td><button type="button" class="btn btn-primary">候场</button></td>';
+                    }elseif($myrow[$m]==2){
+                        echo '<td><button type="button" class="btn btn-danger">出发</button></td>';
+                    }else{
+                        echo '<td><button type="button" class="btn btn-info">正在面试</button></td>';
+                    }
+                }elseif($myrow[4]==3){
+                    echo "<td><b style='color:red;'>".$myrow[$m]."</b></td>";
+                }else{
+                    echo "<td><b>".$myrow[$m]."</b></td>";
+                }
+        }
+        echo "</tr>";
+    }
+?>
+        </tr>
+    </tbody> 
+</table>
+</body>
+<hr color=#ccc width=61.8% />
+<h6>Copyright © 2016 <a href='http://blog.defjia.top'>DefJia</a>. All rights reserved. </h6>
+</html>
