@@ -26,7 +26,7 @@
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <?php
-    include_once("conn.php");
+    include_once("config.php");
 ?>
 <style>
 body{
@@ -79,7 +79,7 @@ caption,th{
     $_sql = "select name, status_ from info_ where status_ = 1";
     //$sql = 'select name, sex, phone, school, major, first, second, third, is_ from info_';
     //echo $sql;
-    $_result = mysqli_query($conn, $_sql);
+    $_result = mysqli_query($config, $_sql);
     //$myrow = mysqli_fetch_array($result);
     mysqli_data_seek($_result,0);  //指针复位 需要研究
     $_nums = mysqli_num_fields($_result);//获取字段数
@@ -88,7 +88,7 @@ while($_myrow = mysqli_fetch_row($_result)){
     $status = $_myrow[1];
     $sql = "select name, sex, phone, school, major, first, second, third, is_ from info where name = '$name'";
     //echo $sql;
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($config, $sql);
     //$myrow = mysqli_fetch_array($result);
     mysqli_data_seek($result,0);  //指针复位 需要研究
     $nums = mysqli_num_fields($result);//获取字段数

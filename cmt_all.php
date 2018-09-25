@@ -11,7 +11,7 @@ echo $_SESSION['who'];
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <?php
-    include_once("conn.php");
+    include_once("config.php");
 ?>
 <style>
 body{
@@ -28,7 +28,7 @@ caption,th{
 <nav class="navbar navbar-default" role="navigation"> 
     <div class="container-fluid"> 
     <div class="navbar-header"> 
-        <a class="navbar-brand" href="index.php">网协面试系统V0.1</a> 
+        <a class="navbar-brand" href="index.php">网协面试系统V1.1</a> 
     </div> 
     <div> 
         <ul class="nav navbar-nav"> 
@@ -77,7 +77,7 @@ caption,th{
     $sql = "select time,name,cmt,interviewee from cmt order by `time` desc";
     
     //echo $sql;
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($config, $sql);
     $myrow = mysqli_fetch_array($result);
     mysqli_data_seek($result,0);  //指针复位 需要研究
     $nums = mysqli_num_fields($result);//获取字段数

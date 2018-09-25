@@ -2,19 +2,18 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <?php
-include_once("conn.php");
+include_once("config.php");
     $get = $_GET['name'];
     //if ($get != NULL){
         //$sql = "update record+ set status_=3 where name='".$get."'";
-       // $result = mysqli_query($conn, $sql);
+       // $result = mysqli_query($config, $sql);
     //}
 ?>
 <head>
 <title>给<?php echo $get;?>写评论</title>
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <script src="bootstrap/jquery.min.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
 <style>
 body{
     background-color:#D4EEC9;
@@ -30,7 +29,7 @@ caption,th{
 <nav class="navbar navbar-default" role="navigation"> 
     <div class="container-fluid"> 
     <div class="navbar-header"> 
-        <a class="navbar-brand" href="index.php">网协面试系统V0.1</a> 
+        <a class="navbar-brand" href="index.php">网协面试系统V1.1</a> 
     </div> 
     <div> 
         <ul class="nav navbar-nav"> 

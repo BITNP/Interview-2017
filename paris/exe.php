@@ -17,7 +17,7 @@
     $dpm = $a1[$get];
     $no = $a2[$get];
 
-	include_once('conn.php');
+	include_once('config.php');
 	$name = $_GET['name'];
 	$eid = $_GET['eid'];
 echo $eid;
@@ -26,12 +26,12 @@ echo $no;
 	if ($eid != NULL || $name != NULL || $no != NULL){
 		if($eid == 'y'){
 			$sql = "update info_ set status_ = '$no' where name='$name'";
-			$result = mysqli_query($conn, $sql);
+			$result = mysqli_query($config, $sql);
 			echo "<script>alert('下单成功'".$sql.");history.go(-1);</script>";
 
 		}elseif($eid == 'n'){
 			$sql = "update info_ set status_ = status_ - 1 where name='$name'";
-			$result = mysqli_query($conn, $sql);
+			$result = mysqli_query($config, $sql);
 			echo '<script>alert("取消成功");history.go(-1);</script>';
 		}else{
 			echo '<script>alert("提交没成功");history.go(-1);</script>';

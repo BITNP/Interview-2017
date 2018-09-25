@@ -13,9 +13,9 @@
         {  
             if($psw == $psw_confirm)  
             {  
-                include_once('../conn.php');   
+                include_once('../config.php');   
                 $sql = "select username from user where username = '$_POST[username]'"; //SQL语句  
-                $result = mysqli_query($conn, $sql);    //执行SQL语句  
+                $result = mysqli_query($config, $sql);    //执行SQL语句  
                 $num = mysqli_num_rows($result); //统计执行结果影响的行数  
                 if($num)    //如果已经存在该用户  
                 {  
@@ -23,8 +23,8 @@
                 }  
                 else    //不存在当前注册用户名称  
                 {
-                    $sql_insert = "insert into user values('$_POST[username]','$hash')";  
-                    $res_insert = mysqli_query($conn, $sql_insert);  
+                    $sql_insert = "insert into user values('$_POST[username]','$hash', 0)";
+                    $res_insert = mysqli_query($config, $sql_insert);  
                     //$num_insert = mysql_num_rows($res_insert);  
                     if($res_insert)  
                     {  
