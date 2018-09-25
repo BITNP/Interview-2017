@@ -6,7 +6,6 @@ $db_name = "bitnpInterview";
 $config = mysqli_connect($host, $user, $pwd, $db_name);
 mysqli_query($config, "set names 'utf8'");
 
-
 $admin = array('defjia', 'admin');
 $waiting_room = array('2B-501');
 $interview_room = array('2B-503', '2B-504', '2B-505');
@@ -16,5 +15,3 @@ $status_code = array('没来', '候场', '准备出发', '面试中', '结束');
 $status_color = array('default', 'primary', 'danger', 'info', 'success');
 
 $current_date = '2018/9/26';
-
-
