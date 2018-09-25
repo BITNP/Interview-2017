@@ -1,12 +1,11 @@
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
-   <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
+<script src="../bootstrap/jquery.min.js"></script>
+<script src="../bootstrap/bootstrap.min.js"></script>
 
-
-
-<div class="container">
+<div class="container" style="margin-top: 10vh;">
 <form class="form-horizontal" role="form" action="regcheck.php" method="post">
   <div class="form-group">
     <label for="firstname" class="col-sm-2 control-label">用户名</label>

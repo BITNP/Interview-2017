@@ -2,41 +2,52 @@
 <?php
     session_start(); 
     $get = $_SESSION['who'];
-    $admin = array('a', 'admin', '2A-206');
-    $inter = array('2A-201','2A-202','2A-203','2A-204','2A-205','admin', 'b');
 
-	include_once('conn.php');
-	$name = $_GET['name'];
+	include_once('config.php');
+	$name = $_GET['id'];
 	$eid = $_GET['eid'];
 	$cmt = '';
 	$ee = '';
+	$id = $_POST['id'];
 	$cmt = $_POST['cmt'];
 	$ee = $_POST['ee'];
 	$namep = $_POST['name'];
+	$waiting = array_merge($waiting_room, $admin);
+	$interview = array_merge($interview_room, $admin);
 	if ($eid != NULL){
-		if($eid == '01' and in_array($get, $admin) ){
-			$sql = "update recordd set status_=1 where name='".$name."' and status_=0";
-			$result = mysqli_query($conn, $sql);
-			//echo '<script>alert("签到成功");history.go(-1);</script>';
-		}elseif ($eid == '12' and in_array($get, $inter)) {
-			$sql = "update recordd set status_=2 where name='".$name."' and status_=1 and room='$get'";
-			$result = mysqli_query($conn, $sql);
-			//echo '<script>alert("叫来成功");history.go(-1);</script>';
-		}elseif($eid == '23' and in_array($get, $admin)){
-			$sql = "update recordd set status_=3 where name='".$name."' and status_=2";
-			$result = mysqli_query($conn, $sql);
-			//echo '<script>alert("开始成功");history.go(-1);</script>';
-		}
+		if($eid == '01' and in_array($get, $waiting) ){
+		    $current_status = 0;
+		    $sql = sprintf("update record set status=%d where id=%d and status=%d", $current_status+1, $name, $current_status);
+			$result = mysqli_query($config, $sql);
+			// 有点不太明白为什么没有影响任何一行，$result还是1呢。
+			if($result) echo '<script>alert("签到成功");history.go(-1);</script>';
+            else echo '<script>alert("权限权限不足或操作次序不当，导致操作失败！");history.go(-1);</script>';
+		}elseif ($eid == '12' and in_array($get, $interview)) {
+            $current_status = 1;
+            $sql = sprintf("update record set status=%d where id=%d and status=%d", $current_status+1, $name, $current_status);
+			$result = mysqli_query($config, $sql);
+            if($result) echo '<script>alert("已让候场教室安排");history.go(-1);</script>';
+            else echo '<script>alert("权限权限不足或操作次序不当，导致操作失败！");history.go(-1);</script>';
+		}elseif($eid == '23' and in_array($get, $waiting)){
+            $current_status = 2;
+            $sql = sprintf("update record set status=%d where id=%d and status=%d", $current_status+1, $name, $current_status);
+			$result = mysqli_query($config, $sql);
+            if($result) echo '<script>alert("安排好了");history.go(-1);</script>';
+            else echo '<script>alert("权限权限不足或操作次序不当，导致操作失败！");history.go(-1);</script>';
+		} else{
+            echo '<script>alert("权限权限不足或操作次序不当，导致操作失败！");history.go(-1);</script>';
+        }
+		/*
 		if($result){
 			echo '<script>alert("操作成功(如果操作次序不当，那就没成功，实在来不及找见这个bug了。问题不大)");history.go(-1);</script>';
 		}else{
-			echo '<script>alert("权限不足或操作次序不当导致的失败");history.go(-1);</script>';
+			echo '<script>alert("权限权限不足或操作次序不当，导致操作失败！");history.go(-1);</script>';
 		}
+		*/
 	}else{
-		$sql = "update recordd set status_=4 where name='".$namep."'";
-		$result = mysqli_query($conn, $sql);
+		$sql = "update record set status=4 where id='".$id."'";
+		$result = mysqli_query($config, $sql);
 		$sql = "insert into cmt (name, cmt, interviewee) values ('".$namep."','".$cmt."','".$ee."')";
-		//echo $sql;
-		$result = mysqli_query($conn, $sql);
-		echo '<script>alert("写评论成功");history.go(-1);</script>';
+		$result = mysqli_query($config, $sql);
+		echo '<script>alert("写评论成功");history.go(-2);</script>';
 	}

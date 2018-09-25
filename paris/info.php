@@ -2,7 +2,7 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <?php
-include_once("conn.php");
+include_once("config.php");
     
         session_start(); 
     $get = $_SESSION['who'];
@@ -66,7 +66,7 @@ caption,th{
         $sql = "select why,intro from info where name='".$get."'";
     
     //echo $sql;
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($config, $sql);
     $myrow = mysqli_fetch_array($result);
     mysqli_data_seek($result,0);  //指针复位 需要研究
     $nums = mysqli_num_fields($result);//获取字段数
@@ -86,7 +86,7 @@ caption,th{
 
     $sql_ = "select interviewee, cmt from cmt where name='".$get."'";
         //echo $sql_;
-        $result_ = mysqli_query($conn, $sql_);
+        $result_ = mysqli_query($config, $sql_);
         //$myrow_ = mysqli_fetch_array($result_);
         mysqli_data_seek($result_,0);  //指针复位 需要研究
         $nums_ = mysqli_num_fields($result_);//获取字段数

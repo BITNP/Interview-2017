@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<iframe src="http://interview.defjia.top/waiting.php" height='800' width='1000'>
+<iframe src="waiting.php" height='800' width='1000'>
   <p>您的浏览器不支持  iframe 标签。</p>
 </iframe>
 
