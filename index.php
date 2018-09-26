@@ -60,7 +60,7 @@ caption,th{
 
 <?php
     if($get != ''){
-        $sql = "select type from user";
+        $sql = sprintf("select type from user where username=%s", $get);
         $res = mysqli_query($config, $sql);
         $type = mysqli_fetch_array($res)[0];
 
@@ -68,7 +68,6 @@ caption,th{
             $sql = sprintf("select date,room,time,name,status,id from record where DATE = '%s' order by time", $current_date);
         else
             $sql = sprintf("select date,room,time,name,status,id from record where DATE = '%s' and room = '%s' order by time", $current_date, $get);
-
         $result = mysqli_query($config, $sql);
         $myrow = mysqli_fetch_array($result);
         mysqli_data_seek($result,0);
