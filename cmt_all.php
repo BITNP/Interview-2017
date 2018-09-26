@@ -1,18 +1,16 @@
 <?php
-echo $_SESSION['who'];
+session_start();
+$get = $_SESSION['who'];
+include_once("config.php");
 ?>
 <!DOCTYPE html>
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <head>
-<title>面试第一天评论汇总</title>
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<?php
-    include_once("config.php");
-?>
+<title>评论汇总</title>
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <script src="bootstrap/jquery.min.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
 <style>
 body{
     background-color:#D4EEC9;
@@ -25,78 +23,42 @@ caption,th{
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation"> 
-    <div class="container-fluid"> 
-    <div class="navbar-header"> 
-        <a class="navbar-brand" href="index.php">网协面试系统V1.1</a> 
-    </div> 
-    <div> 
-        <ul class="nav navbar-nav"> 
-            <li><a href="index.php">候场界面</a></li> 
-            <!--
-            <li><a href="http://localhost/budget/write/expense_daily.html">支出</a></li>
-            <li><a href="http://localhost/budget/write/59store.html">59store</a></li> 
-            
-            <li class="dropdown"> 
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
-                    读取
-                    <b class="caret"></b> 
-                </a> 
-                <ul class="dropdown-menu"> 
-                    <li><a href="http://localhost/budget/read/income_daily.php">今日收入明细</a></li> 
-                    <li><a href="http://localhost/budget/read/expense_daily.php">今日支出明细</a></li> 
-                    <li><a href="http://localhost/budget/read/59store.php">今日明细</a></li> 
-                    <li class="divider"></li>
-                    <li><a href="http://localhost/budget/read/Sept.php">本月收支总览</a></li>
-                    <li class="divider"></li> 
-                    <li><a href="http://localhost/budget/read/income_total.php">本学期收入计划</a></li>
-                    <li><a href="http://localhost/budget/read/expense_total.php">本学期支出预算</a></li> 
-                </ul> 
-            </li> 
-        -->
-        </ul> 
-    </div> 
-    </div> 
-</nav>
+<?php include_once ('nav.html');?>
 
-
+<div class="container">
+    <h1>严禁向协会外无关人员透露本站点网址以及相关隐私信息！</h1>
 <table class="table table-hover"> 
-    <caption><h2>面试第一天评论汇总</h2></caption> 
+    <caption><h2>评论汇总</h2></caption>
     <thead> 
         <tr> 
             <th>时间</th>
-            <th>interviewee</th> 
+            <th>面试者</th>
             <th>评论</th> 
-            <th>interviewer</th>
-
+            <th>面试官</th>
         </tr> 
     </thead> 
     <tbody> 
 
 <?php
+if($get){
     $sql = "select time,name,cmt,interviewee from cmt order by `time` desc";
-    
-    //echo $sql;
     $result = mysqli_query($config, $sql);
     $myrow = mysqli_fetch_array($result);
-    mysqli_data_seek($result,0);  //指针复位 需要研究
-    $nums = mysqli_num_fields($result);//获取字段数
-
-
+    mysqli_data_seek($result,0);
+    $nums = mysqli_num_fields($result);
     while($myrow = mysqli_fetch_row($result)){
         echo "<tr>";
         for ( $m = 0 ; $m < $nums ; $m++ ){
-            
-            
-            
                 echo "<td>".$myrow[$m]."</td>";
-            
         }
+        echo "</tr>";
     }
+}
 ?>
-        </tr>
     </tbody> 
 </table>
+    <h3>看不到东西先去<a href='register/login.php'>登录界面</a></h3>
+</div>
 </body>
 <hr color=#ccc width=61.8% />
 <h6>Copyright © 2016 <a href='http://blog.defjia.top'>DefJia</a>. All rights reserved. </h6>
