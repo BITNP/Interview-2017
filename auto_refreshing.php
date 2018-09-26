@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<?php include_once('header.php');?>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
