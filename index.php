@@ -60,7 +60,7 @@ caption,th{
 
 <?php
     if($get != ''){
-        $sql = "select type from user";
+        $sql = sprintf("select type from user where username=%s", $get);
         $res = mysqli_query($config, $sql);
         $type = mysqli_fetch_array($res)[0];
 
