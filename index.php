@@ -35,6 +35,7 @@ caption,th{
     <div> 
         <ul class="nav navbar-nav"> 
             <li><a href="waiting.php">候场界面</a></li>
+            <li><a href="https://github.com/DefJia/Interview-2017/blob/master/HowToUse.md">使用指南</a></li>
         </ul> 
     </div> 
     </div> 
