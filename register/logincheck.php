@@ -1,3 +1,4 @@
+<?php include_once('../header.php'); ?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <?php  
     if(isset($_POST["submit"]) && $_POST["submit"] == "登陆")  

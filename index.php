@@ -1,9 +1,11 @@
+<?php
+session_start();
+include_once('header.php');
+?>
 <!DOCTYPE html>
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <?php
-    //$get = $_GET['room'];
-    session_start(); 
     $get = $_SESSION['who'];
 ?>
 <head>
@@ -26,18 +28,7 @@ caption,th{
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation"> 
-    <div class="container-fluid"> 
-    <div class="navbar-header"> 
-        <a class="navbar-brand" href="index.php">网协面试系统V1.1</a> 
-    </div> 
-    <div> 
-        <ul class="nav navbar-nav"> 
-            <li><a href="waiting.php">候场界面</a></li>
-        </ul> 
-    </div> 
-    </div> 
-</nav>
+<?php include_once ('nav.html');?>
 
 <div class="container">
 <table class="table table-hover"> 
@@ -59,9 +50,15 @@ caption,th{
 
 <?php
     if($get != ''){
-        $sql = "select type from user";
-        $res = mysqli_query($config, $sql);
-        $type = mysqli_fetch_array($res)[0];
+        if (in_array($get, $interview_room)) {
+            /*
+            $sql = sprintf("select type from user where username=%s", $get);
+            $res = mysqli_query($config, $sql);
+            $type = mysqli_fetch_array($res)[0];
+            */
+            $type = 0;
+        } else if($get != 'bitnp') $type = 1;
+        else $type = 3;
 
         if($type > 0)
             $sql = sprintf("select date,room,time,name,status,id from record where DATE = '%s' order by time", $current_date);

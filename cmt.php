@@ -1,13 +1,10 @@
+<?php include_once('header.php');?>
 <!DOCTYPE html>
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <?php
 include_once("config.php");
     $get = $_GET['name'];
-    //if ($get != NULL){
-        //$sql = "update record+ set status_=3 where name='".$get."'";
-       // $result = mysqli_query($config, $sql);
-    //}
 ?>
 <head>
 <title>给<?php echo $get;?>写评论</title>
