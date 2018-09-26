@@ -22,18 +22,8 @@ caption,th{
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation"> 
-    <div class="container-fluid"> 
-    <div class="navbar-header"> 
-        <a class="navbar-brand" href="index.php">网协面试系统V1.1</a> 
-    </div> 
-    <div> 
-        <ul class="nav navbar-nav"> 
-            <li><a href="index.php">候场界面</a></li>
-        </ul> 
-    </div> 
-    </div> 
-</nav>
+<?php include_once ('nav.html');?>
+
 <div class="container">
 <table class="table table-hover"> 
     <caption><h2>候场教室</h2></caption> 
