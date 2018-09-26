@@ -61,9 +61,14 @@ caption,th{
 
 <?php
     if($get != ''){
-        $sql = sprintf("select type from user where username=%s", $get);
-        $res = mysqli_query($config, $sql);
-        $type = mysqli_fetch_array($res)[0];
+        if (in_array($get, $interview_room)) {
+            /*
+            $sql = sprintf("select type from user where username=%s", $get);
+            $res = mysqli_query($config, $sql);
+            $type = mysqli_fetch_array($res)[0];
+            */
+            $type = 0;
+        } else $type = 1;
 
         if($type > 0)
             $sql = sprintf("select date,room,time,name,status,id from record where DATE = '%s' order by time", $current_date);
