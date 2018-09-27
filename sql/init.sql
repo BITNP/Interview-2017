@@ -46,3 +46,5 @@ ALTER TABLE `cmt`
 
 ALTER TABLE `user`
   ADD PRIMARY KEY (`username`);
+
+ALTER TABLE `info` CHANGE `id` `id` INT(3) NOT NULL AUTO_INCREMENT;

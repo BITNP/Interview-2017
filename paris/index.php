@@ -1,15 +1,12 @@
+<?php include_once("../config.php"); ?>
 <!DOCTYPE html>
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <head>
-<title>分赃系统实时监控</title>
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<?php
-    include_once("config.php");
-?>
+<title>实时监控</title>
+    <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
+    <script src="../bootstrap/jquery.min.js"></script>
+    <script src="../bootstrap/bootstrap.min.js"></script>
 <style>
 body{
     background-color:#D4EEC9;
@@ -21,25 +18,11 @@ caption,th{
 </style>
 </head>
 <body>
-
-<nav class="navbar navbar-default" role="navigation"> 
-    <div class="container-fluid"> 
-    <div class="navbar-header"> 
-        <a class="navbar-brand" href="index.php">网协分赃系统V1.0</a> 
-    </div> 
-    <div> 
-        <ul class="nav navbar-nav"> 
-            <li><a href="pick.php">捡漏</a></li> 
-            <li><a href="wait.php">选人</a><li>
-            <li><a href="already.php">查看</a><li>
-            <li><a href="../register/login.php">登录</a><li>
-        </ul> 
-    </div> 
-    </div> 
-</nav>
+<?php include_once ('nav.html');?>
+<div class="container">
 <table class="table table-hover"> 
-    <caption><h2>实时监控</h2></caption> 
-    <thead> 
+    <caption><h2>分赃系统实时监控</h2></caption>
+    <thead>
         <tr> 
             <th>姓名</th>
             <th>性别</th> 
@@ -128,7 +111,7 @@ while($_myrow = mysqli_fetch_row($_result)){
         </tr>
     </tbody> 
 </table>
+</div>
 </body>
-<hr color=#ccc width=61.8% />
-<h6>Copyright © 2016 <a href='http://blog.defjia.top'>DefJia</a>. All rights reserved. </h6>
+<?php include_once ('../footer.html');?>
 </html>
