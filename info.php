@@ -36,7 +36,7 @@ caption,th{
     <thead><th>类别</th><th>信息</th></thead>
     <tbody>
 <?php
-    for($i = 0; $i < $nums-1; $i++){
+    for($i = 0; $i < $nums; $i++){
         $info = sprintf("<tr><td>%s</td><td>%s</td></tr>", $info_field[$i], $result[$i]);
         echo $info;
     }
