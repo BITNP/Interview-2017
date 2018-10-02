@@ -1,4 +1,3 @@
-<?php include_once("../config.php"); ?>
 <!DOCTYPE html>
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -21,18 +20,15 @@ caption,th{
 <?php include_once ('nav.html');?>
 <div class="container">
 <table class="table table-hover"> 
-    <caption><h2>分赃系统实时监控</h2></caption>
+    <caption><h2>系统实时监控</h2></caption>
     <thead>
-        <tr> 
-            <th>姓名</th>
-            <th>性别</th> 
-            <th>电话</th> 
-            <th>学院</th>
-            <th>专业</th>
-            <th>第一志愿</th>
-            <th>第二志愿</th>
-            <th>第三志愿</th>
-            <th>是否服从</th>
+        <tr>
+            <?php
+                for($i = 0; $i < count($info_field2); $i++){
+                    $th = sprintf("<th>%s</th>", $info_field2[$i]);
+                    echo $th;
+                }
+            ?>
             <th>信息</th>
             <th>录取状态</th>
         </tr> 
@@ -45,8 +41,8 @@ caption,th{
     //echo $sql;
     $_result = mysqli_query($config, $_sql);
     //$myrow = mysqli_fetch_array($result);
-    mysqli_data_seek($_result,0);  //指针复位 需要研究
-    $_nums = mysqli_num_fields($_result);//获取字段数
+    mysqli_data_seek($_result,0);
+    $_nums = mysqli_num_fields($_result);
 while($_myrow = mysqli_fetch_row($_result)){
     $name = $_myrow[0];
     $status = $_myrow[1];
