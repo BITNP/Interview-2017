@@ -64,8 +64,8 @@ caption,th{
     //echo $sql;
     $_result = mysqli_query($config, $_sql);
     //$myrow = mysqli_fetch_array($result);
-    mysqli_data_seek($_result,0);  //指针复位 需要研究
-    $_nums = mysqli_num_fields($_result);//获取字段数
+    mysqli_data_seek($_result,0);
+    $_nums = mysqli_num_fields($_result);
 while($_myrow = mysqli_fetch_row($_result)){
     $name = $_myrow[0];
     $status = $_myrow[1];
@@ -73,8 +73,8 @@ while($_myrow = mysqli_fetch_row($_result)){
     //echo $sql;
     $result = mysqli_query($config, $sql);
     //$myrow = mysqli_fetch_array($result);
-    mysqli_data_seek($result,0);  //指针复位 需要研究
-    $nums = mysqli_num_fields($result);//获取字段数
+    mysqli_data_seek($result,0);
+    $nums = mysqli_num_fields($result);
     while($myrow = mysqli_fetch_row($result)){
         echo "<tr>";
         for ( $m = 0 ; $m < $nums ; $m++ ){
