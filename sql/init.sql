@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `record` (
   `date` varchar(10) DEFAULT NULL,
   `time` varchar(5) DEFAULT NULL,
   `room` varchar(6) DEFAULT NULL,
-  `status` int(1) DEFAULT 0
+  `status` int(2) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `user` (

@@ -10,6 +10,10 @@ include_once("config.php");
     $nums = mysqli_num_fields($result);
     $result = mysqli_fetch_array($result);
     $name = $result[1];
+    // info above
+    $sql = sprintf("select cmt, interviewee from cmt where name = '%s'", $name);
+    $res = mysqli_query($config, $sql);
+    // cmt above
 ?>
 <head>
 <title><?php echo $name;?>的信息</title>
@@ -40,10 +44,15 @@ caption,th{
         $info = sprintf("<tr><td>%s</td><td>%s</td></tr>", $info_field[$i], $result[$i]);
         echo $info;
     }
+    while ($cmts = mysqli_fetch_row($res)){
+        $cmt = sprintf('<tr style="background-color: #5bc0de"><td>%s</td><td>%s</td></tr>', $cmts[0], $cmts[1]);
+        echo $cmt;
+    }
 ?>
     </tbody>
 </table>
-
+<!--
+面试结束，暂时隐藏
 <form action='exe.php' method='post' role="form">
     <h1>请各位面试结束后再提交:-)</h1>
     <div class="form-group">
@@ -68,6 +77,7 @@ caption,th{
         </div>
     </div>
     </form>
+    -->
 </div>
 </body>
 <?php include_once ('footer.html');?>
