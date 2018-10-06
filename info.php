@@ -45,7 +45,7 @@ caption,th{
         echo $info;
     }
     while ($cmts = mysqli_fetch_row($res)){
-        $cmt = sprintf('<tr style="background-color: #5bc0de"><td>%s</td><td>%s</td></tr>', $cmts[0], $cmts[1]);
+        $cmt = sprintf('<tr style="background-color: #5bc0de"><td>%s</td><td>%s</td></tr>', $cmts[1], $cmts[0]);
         echo $cmt;
     }
 ?>
