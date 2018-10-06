@@ -5,6 +5,7 @@
  * Date: 18-9-24
  * Time: 上午12:49
  */
+error_reporting(0);
 $host = "localhost";
 $user = "";
 $pwd = "";

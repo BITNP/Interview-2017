@@ -22,7 +22,6 @@ class Execute{
         global $config;
         $this->id = (int)$this->id;
         $dpt_name = array('net', 'tech', 'clinic', 'dm', 'org');
-        echo $dpt_name;
         if(in_array($this->user, $dpt_name)) {
             if ($this->id > 0) {
                 // id > 0 => enroll
@@ -30,7 +29,7 @@ class Execute{
                 $sql = sprintf('update record set status = %d where id = %d', $new_status, $this->id);
             } else {
                 // not enroll
-                if($this->user != 'already')
+                if($this->title != 'already')
                     $sql = sprintf('update record set status = status + 1 where id = %d', 0 - $this->id);
                 else
                     $sql = sprintf('update record set status = 7 where id = %d', 0 - $this->id);
@@ -116,7 +115,7 @@ class Page{
                 break;
             }
             case 'pick':{
-                if (in_array($this->user, array_merge($dpt_name, $admin))){
+                if (in_array($this->user, array_merge($dpt_user, $admin))){
                     $limit[0] = 'b.status = 7';
                 } else return 0;
                 break;
@@ -139,7 +138,6 @@ class Page{
     function generateButton($id, $status){
         // needs title and id and status;
         // generate status, info, actions
-        global $titles;
         // Prepare
         $enroll_info = array('等待第一志愿', '等待第二志愿', '等待第三志愿', '落选-等待捡漏', '网络部录取', '技术部录取', '电脑诊所录取', '树莓录取', '组织部录取');
         $enroll_style = array('default', 'primary', 'warning', 'danger', 'success', 'success', 'success', 'success', 'success');
@@ -171,25 +169,27 @@ class Page{
 
     function getData($limit){
         global $config;
-        $sql_base = 'select a.name, a.sex, a.phone, a.major, a.first, a.second, a.third, a.is_, a.id, b.status from info a LEFT JOIN record b ON a.id = b.id';
+        $sql_base = 'select a.id, a.name, a.sex, a.phone, a.major, a.first, a.second, a.third, a.is_, a.id, b.status from info a LEFT JOIN record b ON a.id = b.id';
         $content = '';
         for($i = 0; $i < count($limit); $i++){
             $sql = sprintf('%s where %s', $sql_base, $limit[$i]);
             $result = mysqli_query($config, $sql);
-            $rows = mysqli_num_rows($result);
-            $columns = mysqli_num_fields($result);
-            $raw_content = mysqli_fetch_all($result);
             $content = '';
-            for($j = 0; $j < $rows; $j++){
-                $row = '';
-                $cur = $raw_content[$j];
-                for($k = 0; $k < $columns-2; $k++)
-                    $row .= sprintf('<td>%s</td>', $cur[$k]);
-                $row = sprintf('<tr>%s%s</tr>', $row, $this->generateButton($cur[$columns-2], $cur[$columns-1]));
-                echo $raw_content[$columns-1];
-                $content .= $row;
+            if($result){
+                $rows = mysqli_num_rows($result);
+                $columns = mysqli_num_fields($result);
+                $raw_content = mysqli_fetch_all($result);
+                for($j = 0; $j < $rows; $j++){
+                    $row = '';
+                    $cur = $raw_content[$j];
+                    for($k = 0; $k < $columns-2; $k++)
+                        $row .= sprintf('<td>%s</td>', $cur[$k]);
+                    $row = sprintf('<tr>%s%s</tr>', $row, $this->generateButton($cur[$columns-2], $cur[$columns-1]));
+                    // echo $raw_content[$columns-1];
+                    $content .= $row;
+                }
+                mysqli_free_result($result);
             }
-            mysqli_free_result($result);
             return $content;
         }
     }
