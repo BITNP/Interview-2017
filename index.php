@@ -75,10 +75,11 @@ caption,th{
             echo "<tr>";
             for ( $m = 0 ; $m < $nums-1 ; $m++ ){
                 if ($m == 4){
-                    $tmp = sprintf('<td><button type="button" class="btn btn-%s">%s</button></td>', $status_color[$myrow[$m]], $status_code[$myrow[$m]]);
-                } else if($m > 4){
-                    $tmp = sprintf('<td><button type="button" class="btn btn-%s">%s</button></td>', 'info', '进入录取环节');
-                }else{
+                    if($myrow[$m] <= 4)
+                        $tmp = sprintf('<td><button type="button" class="btn btn-%s">%s</button></td>', $status_color[$myrow[$m]], $status_code[$myrow[$m]]);
+                    else
+                        $tmp = sprintf('<td><button type="button" class="btn btn-%s">%s</button></td>', 'info', '进入录取环节');
+                } else{
                     $tmp = sprintf("<td>%s</td>", $myrow[$m]);
                 }
                 echo $tmp;
