@@ -59,11 +59,14 @@ caption,th{
             $type = 0;
         } else if($get != 'bitnp') $type = 1;
         else $type = 3;
-
+/*
         if($type > 0)
             $sql = sprintf("select date,room,time,name,status,id from record where DATE = '%s' order by time", $current_date);
         else
             $sql = sprintf("select date,room,time,name,status,id from record where DATE = '%s' and room = '%s' order by time", $current_date, $get);
+*/
+        $sql = sprintf("select date,room,time,name,status,id from record order by time");
+        // 紧急修复 -> 全名单
         $result = mysqli_query($config, $sql);
         $myrow = mysqli_fetch_array($result);
         mysqli_data_seek($result,0);

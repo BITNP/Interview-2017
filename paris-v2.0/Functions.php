@@ -170,7 +170,7 @@ class Page{
     function getData($limit){
         global $config;
         $sql_base = 'select a.id, a.name, a.sex, a.phone, a.major, a.first, a.second, a.third, a.is_, a.id, b.status from info a LEFT JOIN record b ON a.id = b.id';
-        $content = '';
+        $content_all = '';
         for($i = 0; $i < count($limit); $i++){
             $sql = sprintf('%s where %s', $sql_base, $limit[$i]);
             $result = mysqli_query($config, $sql);
@@ -190,8 +190,9 @@ class Page{
                 }
                 mysqli_free_result($result);
             }
-            return $content;
+            $content_all .= $content;
         }
+        return $content_all;
     }
 
     function echoTbody(){

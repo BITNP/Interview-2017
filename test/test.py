@@ -67,5 +67,5 @@ if __name__ == '__main__':
     dm = General().login(users[3], pwds[3])
     org = General().login(users[4], pwds[4])
     net.enroll_action(54, 'wait', 0)
-    tech.enroll_action(54, 'wait', 0)
-    clinic.enroll_action(54, 'wait', 0)
+    # tech.enroll_action(54, 'wait', 0)
+    # clinic.enroll_action(54, 'wait', 0)
