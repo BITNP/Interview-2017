@@ -39,7 +39,7 @@ config.php - 配置文件
 
 ### 录取系统(paris-v2.0/)
 
-- [Functions.php - 生成页面的方法集合](paris-v2.0/Function.php)
+- [Functions.php - 生成页面的方法集合](paris-v2.0/Functions.php)
 - "index"=>"网协面试录取系统", "wait"=>"可选列表", "pick"=>"捡漏队列", "already"=>"已录取名单"
 
 ### 测试(test/)
