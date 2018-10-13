@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `record` (
   `date` varchar(10) DEFAULT NULL,
   `time` varchar(5) DEFAULT NULL,
   `room` varchar(6) DEFAULT NULL,
-  `status` int(1) DEFAULT 0
+  `status` int(2) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -46,3 +46,5 @@ ALTER TABLE `cmt`
 
 ALTER TABLE `user`
   ADD PRIMARY KEY (`username`);
+
+ALTER TABLE `info` CHANGE `id` `id` INT(3) NOT NULL AUTO_INCREMENT;

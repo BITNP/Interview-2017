@@ -28,7 +28,7 @@
                     //$num_insert = mysql_num_rows($res_insert);  
                     if($res_insert)  
                     {  
-                        echo "<script>alert('注册成功！'); history.go(-1);</script>";  
+                        echo "<script>alert('注册成功！');window.location='login.php';</script>";
                     }  
                     else  
                     {  

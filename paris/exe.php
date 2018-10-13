@@ -1,4 +1,3 @@
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <?php
     session_start(); 
     $get = $_SESSION['who'];
@@ -41,3 +40,4 @@ echo $no;
 	}
 
 ?>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

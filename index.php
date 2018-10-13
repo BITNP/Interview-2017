@@ -59,12 +59,14 @@ caption,th{
             $type = 0;
         } else if($get != 'bitnp') $type = 1;
         else $type = 3;
-
+/*
         if($type > 0)
             $sql = sprintf("select date,room,time,name,status,id from record where DATE = '%s' order by time", $current_date);
         else
             $sql = sprintf("select date,room,time,name,status,id from record where DATE = '%s' and room = '%s' order by time", $current_date, $get);
-
+*/
+        $sql = sprintf("select date,room,time,name,status,id from record order by time");
+        // 紧急修复 -> 全名单
         $result = mysqli_query($config, $sql);
         $myrow = mysqli_fetch_array($result);
         mysqli_data_seek($result,0);
@@ -73,7 +75,10 @@ caption,th{
             echo "<tr>";
             for ( $m = 0 ; $m < $nums-1 ; $m++ ){
                 if ($m == 4){
-                    $tmp = sprintf('<td><button type="button" class="btn btn-%s">%s</button></td>', $status_color[$myrow[$m]], $status_code[$myrow[$m]]);
+                    if($myrow[$m] <= 4)
+                        $tmp = sprintf('<td><button type="button" class="btn btn-%s">%s</button></td>', $status_color[$myrow[$m]], $status_code[$myrow[$m]]);
+                    else
+                        $tmp = sprintf('<td><button type="button" class="btn btn-%s">%s</button></td>', 'info', '进入录取环节');
                 } else{
                     $tmp = sprintf("<td>%s</td>", $myrow[$m]);
                 }
